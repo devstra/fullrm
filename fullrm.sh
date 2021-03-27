@@ -1,5 +1,6 @@
-search=$1
+#! /bin/bash
 
+search=$1
 echo "Searching for $1..."
 # find the path of files/folders with names containing given search term and wraps them with quotes
 results=$(fd --exclude /System --exclude /usr/local/Homebrew -uu $search / | perl -pe "s/(.*?$search.*?\/|$).*/\1/i;s/\/$//" | uniq | sed -e 's/^/"/g' -e 's/$/"/g' | tr '\n' ' ')
